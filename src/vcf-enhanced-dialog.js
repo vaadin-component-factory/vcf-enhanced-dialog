@@ -12,10 +12,10 @@ import { ElementMixin } from '@vaadin/vaadin-element-mixin';
 import '@vaadin/vaadin-license-checker/vaadin-license-checker';
 
 /**
- * `<vcf-element>` --elementdescription--
+ * `<vcf-enhanced-dialog>` Vaadin dialog extension with header, footer and scrolling content area.
  *
  * ```html
- * <vcf-element></vcf-element>
+ * <vcf-enhanced-dialog></vcf-enhanced-dialog>
  * ```
  *
  * ### Styling
@@ -24,7 +24,7 @@ import '@vaadin/vaadin-license-checker/vaadin-license-checker';
  *
  * Custom property | Description | Default
  * ----------------|-------------|-------------
- * `--vcf-element-property` | Example custom property | `unset`
+ * `--vcf-enhanced-dialog-property` | Example custom property | `unset`
  *
  * The following shadow DOM parts are available for styling:
  *
@@ -43,7 +43,7 @@ import '@vaadin/vaadin-license-checker/vaadin-license-checker';
  * @mixes ThemableMixin
  * @demo demo/index.html
  */
-class VcfElement extends ElementMixin(ThemableMixin(PolymerElement)) {
+class VcfEnhancedDialog extends ElementMixin(ThemableMixin(PolymerElement)) {
   static get template() {
     return html`
       <style>
@@ -55,7 +55,7 @@ class VcfElement extends ElementMixin(ThemableMixin(PolymerElement)) {
   }
 
   static get is() {
-    return 'vcf-element';
+    return 'vcf-enhanced-dialog';
   }
 
   static get version() {
@@ -75,14 +75,14 @@ class VcfElement extends ElementMixin(ThemableMixin(PolymerElement)) {
     const devModeCallback = window.Vaadin.developmentModeCallback;
     const licenseChecker = devModeCallback && devModeCallback['vaadin-license-checker'];
     if (typeof licenseChecker === 'function') {
-      licenseChecker(VcfElement);
+      licenseChecker(VcfEnhancedDialog);
     }
   }
 }
 
-customElements.define(VcfElement.is, VcfElement);
+customElements.define(VcfEnhancedDialog.is, VcfEnhancedDialog);
 
 /**
  * @namespace Vaadin
  */
-window.Vaadin.VcfElement = VcfElement;
+window.Vaadin.VcfEnhancedDialog = VcfEnhancedDialog;

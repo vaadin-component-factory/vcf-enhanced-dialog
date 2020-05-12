@@ -1,7 +1,7 @@
 import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles.js';
 
 registerStyles(
-  'vcf-element',
+  'vcf-enhanced-dialog',
   css`
     :host {
       /* lumo styles */

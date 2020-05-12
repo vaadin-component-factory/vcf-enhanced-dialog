@@ -1,25 +1,25 @@
-# &lt;vcf-element&gt;
+# &lt;vcf-enhanced-dialog&gt;
 
-**Note that this is a starter boilerplate for creating Polymer 3 based components.**
 
-**Run `npm install` and follow the prompts to setup the workspace.**
+
+
 
 <!--
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![npm version](https://badgen.net/npm/v/@vaadin-component-factory/vcf-element)](https://www.npmjs.com/package/@vaadin-component-factory/vcf-element)
-[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadin-component-factoryvcf-element)
+[![npm version](https://badgen.net/npm/v/@vaadin-component-factory/vcf-enhanced-dialog)](https://www.npmjs.com/package/@vaadin-component-factory/vcf-enhanced-dialog)
+[![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadin-component-factoryvcf-enhanced-dialog)
 
-[Live demo ↗](https://vcf-element.netlify.com)
+[Live demo ↗](https://vcf-enhanced-dialog.netlify.com)
 |
-[API documentation ↗](https://vcf-element.netlify.com/api/#/elements/Vaadin.VcfElement)
+[API documentation ↗](https://vcf-enhanced-dialog.netlify.com/api/#/elements/Vaadin.VcfEnhancedDialog)
 -->
 
 ## Installation
 
-Install `vcf-element`:
+Install `vcf-enhanced-dialog`:
 
 ```sh
-npm i @vaadin-component-factory/vcf-element --save
+npm i @vaadin-component-factory/vcf-enhanced-dialog --save
 ```
 
 ## Usage
@@ -27,22 +27,22 @@ npm i @vaadin-component-factory/vcf-element --save
 Once installed, import it in your application:
 
 ```js
-import '@vaadin-component-factory/vcf-element';
+import '@vaadin-component-factory/vcf-enhanced-dialog';
 ```
 
-Add `<vcf-element>` element to the page.
+Add `<vcf-enhanced-dialog>` element to the page.
 
 ```html
-<vcf-element></vcf-element>
+<vcf-enhanced-dialog></vcf-enhanced-dialog>
 ```
 
 ## Running demo
 
-1. Fork the `vcf-element` repository and clone it locally.
+1. Fork the `vcf-enhanced-dialog` repository and clone it locally.
 
 1. Make sure you have [npm](https://www.npmjs.com/) installed.
 
-1. When in the `vcf-element` directory, run `npm install` to install dependencies.
+1. When in the `vcf-enhanced-dialog` directory, run `npm install` to install dependencies.
 
 1. Run `npm start` to open the demo.
 
