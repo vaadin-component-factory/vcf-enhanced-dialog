@@ -33,7 +33,7 @@ registerStyles(
       display: none;
     }
 
-    :has() :host([theme~='small']) [part='overlay'] {
+    :host([theme~='small']) [part='overlay'] {
       width: 50%;
       min-width: 25rem;
       max-width: 40rem;
@@ -184,9 +184,7 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * @extends PolymerElement
- * @mixes ElementMixin
- * @mixes ThemePropertyMixin
+ * @extends DialogElement
  * @demo demo/index.html
  */
 class VcfEnhancedDialog extends DialogElement {

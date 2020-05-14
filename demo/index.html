@@ -33,7 +33,7 @@
           <vcf-enhanced-dialog id="basic" theme="small">
             <template>
               <h4 slot="header">Example Header</h4>
-              <vaadin-button id="cancel-button" slot="footer" theme="tertiary" onclick="cancel()">Cancel</vaadin-button>
+              <vaadin-button slot="footer" theme="tertiary" onclick="cancel()">Cancel</vaadin-button>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit, libero vel suscipit
                 finibus, sapien mi luctus ligula, in placerat sapien lacus a ex. Quisque arcu mauris, porta in interdum
@@ -70,12 +70,14 @@
             </template>
           </vcf-enhanced-dialog>
 
-          <vaadin-button id="open-button1">Open Dialog</vaadin-button>
+          <vaadin-button id="open">Open Dialog</vaadin-button>
 
           <script>
             window.addEventListener('WebComponentsReady', () => {
               const dialog = document.querySelector('#basic');
-              document.querySelector('#open-button1').addEventListener('click', () => (dialog.opened = true));
+              document.querySelector('#open').addEventListener('click', () => {
+                dialog.opened = true;
+              });
               window.cancel = () => (dialog.opened = false);
             });
           </script>
@@ -93,7 +95,9 @@
           </vcf-enhanced-dialog>
 
           <vaadin-button id="open-s">Small</vaadin-button>
+          &nbsp;
           <vaadin-button id="open-m">Medium</vaadin-button>
+          &nbsp;
           <vaadin-button id="open-l">Large</vaadin-button>
 
           <script>
