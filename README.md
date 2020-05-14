@@ -1,18 +1,12 @@
 # &lt;vcf-enhanced-dialog&gt;
 
-
-
-
-
-<!--
 [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/web-components?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![npm version](https://badgen.net/npm/v/@vaadin-component-factory/vcf-enhanced-dialog)](https://www.npmjs.com/package/@vaadin-component-factory/vcf-enhanced-dialog)
 [![Published on Vaadin Directory](https://img.shields.io/badge/Vaadin%20Directory-published-00b4f0.svg)](https://vaadin.com/directory/component/vaadin-component-factoryvcf-enhanced-dialog)
 
-[Live demo ↗](https://vcf-enhanced-dialog.netlify.com)
+[Live demo ↗](https://vcf-enhanced-dialog.netlify.app)
 |
-[API documentation ↗](https://vcf-enhanced-dialog.netlify.com/api/#/elements/Vaadin.VcfEnhancedDialog)
--->
+[API documentation ↗](https://vcf-enhanced-dialog.netlify.app/api/#/elements/Vaadin.VcfEnhancedDialog)
 
 ## Installation
 
