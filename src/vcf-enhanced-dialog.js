@@ -131,35 +131,62 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
 customElements.define(DialogOverlayElement.is, DialogOverlayElement);
 
 /**
- * `<vcf-enhanced-dialog>` Vaadin dialog extension with header, footer and scrolling content area.
+ *
+ * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs. The content of the
+ * dialog can be populated in two ways: imperatively by using renderer callback function and
+ * declaratively by using Polymer's Templates.
+ *
+ * ### Rendering
+ *
+ * By default, the dialog uses the content provided by using the renderer callback function.
+ *
+ * The renderer function provides `root`, `dialog` arguments.
+ * Generate DOM content, append it to the `root` element and control the state
+ * of the host element by accessing `dialog`. Before generating new content,
+ * users are able to check if there is already content in `root` for reusing it.
  *
  * ```html
- * <vcf-enhanced-dialog></vcf-enhanced-dialog>
+ * <vcf-enhanced-dialog id="dialog"></vcf-enhanced-dialog>
+ * ```
+ * ```js
+ * const dialog = document.querySelector('#dialog');
+ * dialog.renderer = function(root, dialog) {
+ *   root.textContent = "Sample dialog";
+ * };
+ * ```
+ *
+ * Renderer is called on the opening of the dialog.
+ * DOM generated during the renderer call can be reused
+ * in the next renderer call and will be provided with the `root` argument.
+ * On first call it will be empty.
+ *
+ * ### Polymer Templates
+ *
+ * Alternatively, the content can be provided with Polymer's Template.
+ * Dialog finds the first child template and uses that in case renderer callback function
+ * is not provided. You can also set a custom template using the `template` property.
+ *
+ * ```html
+ * <vcf-enhanced-dialog opened>
+ *   <template>
+ *     Sample dialog
+ *   </template>
+ * </vcf-enhanced-dialog>
  * ```
  *
  * ### Styling
  *
- * The following custom properties are available for styling:
+ * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
+ * for `<vcf-enhanced-dialog-overlay>` parts.
  *
- * Custom property | Description | Default
- * ----------------|-------------|-------------
- * `--vcf-enhanced-dialog-property` | Example custom property | `unset`
+ * Note: the `theme` attribute value set on `<vaadin-dialog>` is
+ * propagated to the internal `<vcf-enhanced-dialog-overlay>` component.
  *
- * The following shadow DOM parts are available for styling:
+ * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * Part name | Description
- * ----------------|----------------
- * `part` | Example part
- *
- * The following state attributes are available for styling:
- *
- * Attribute    | Description | Part name
- * -------------|-------------|------------
- * `attribute` | Example styling attribute | :host
- *
- * @memberof Vaadin
+ * @extends PolymerElement
  * @mixes ElementMixin
- * @mixes ThemableMixin
+ * @mixes ThemePropertyMixin
  * @demo demo/index.html
  */
 class VcfEnhancedDialog extends DialogElement {

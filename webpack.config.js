@@ -115,10 +115,7 @@ const productionConfig = merge([
       new HtmlWebpackPlugin({
         template: INDEX_TEMPLATE,
         minify: {
-          collapseWhitespace: true,
-          removeComments: true,
-          minifyCSS: true,
-          minifyJS: true
+          removeComments: true
         }
       }),
       new HtmlReplaceWebpackPlugin([
