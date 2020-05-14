@@ -27,10 +27,86 @@
   <body>
     <main class="vertical-section-container centered hidden">
       <h4><a href="api/#/elements/Vaadin.VcfEnhancedDialog">API documentation ↗</a></h4>
-      <h3>Basic</h3>
+      <h3>Basic Enhanced Dialog</h3>
       <demo-snippet>
         <template>
-          <vcf-enhanced-dialog></vcf-enhanced-dialog>
+          <vcf-enhanced-dialog id="basic" theme="small">
+            <template>
+              <h4 slot="header">Example Header</h4>
+              <vaadin-button id="cancel-button" slot="footer" theme="tertiary" onclick="cancel()">Cancel</vaadin-button>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit, libero vel suscipit
+                finibus, sapien mi luctus ligula, in placerat sapien lacus a ex. Quisque arcu mauris, porta in interdum
+                ac, gravida at odio. Integer in aliquet metus, sed pulvinar lectus. Suspendisse potenti. Pellentesque
+                sed urna quis ligula lacinia aliquet. Phasellus iaculis sapien nulla, vitae lobortis libero mollis sed.
+                Ut suscipit porta odio id interdum. Aliquam id ipsum nisi. Nam et condimentum eros, id facilisis mauris.
+                Nulla maximus at tortor sodales auctor. Cras facilisis, enim vitae dapibus ultrices, tortor neque
+                feugiat risus, vel gravida odio tortor eu odio. Nulla non diam pellentesque, eleifend lacus ullamcorper,
+                sodales nibh. Etiam pellentesque maximus ligula. Cras mattis dui non lectus finibus molestie. Fusce
+                posuere rhoncus finibus. Mauris imperdiet elit eu diam finibus bibendum. Fusce vestibulum egestas nisl
+                vitae mattis. Donec tincidunt est non mauris egestas viverra. Nulla dignissim purus dui, ac tincidunt
+                velit molestie id. Mauris nec quam rhoncus, faucibus ipsum ultrices, lobortis ex. Mauris maximus nisi
+                non tortor rutrum, non dictum arcu finibus. Curabitur malesuada mauris eu ligula bibendum sollicitudin.
+                Nulla facilisi. Aenean at ante sapien. Nulla ac lorem sit amet risus sollicitudin fringilla. Proin
+                pulvinar congue augue non feugiat. In a arcu in libero maximus varius sit amet ac est. Duis vel commodo
+                metus, vehicula gravida orci. Vestibulum posuere nibh vel vehicula consequat. Vestibulum consequat odio
+                nec mauris scelerisque porttitor. Orci varius natoque penatibus et magnis dis parturient montes,
+                nascetur ridiculus mus. Donec id purus sed risus venenatis porttitor quis ultrices eros. Praesent
+                malesuada quis ipsum sit amet tempor. Nulla interdum ac dolor eu euismod. Fusce venenatis sodales ipsum
+                ut efficitur. Fusce maximus malesuada turpis, nec mattis nisl sagittis sit amet. Ut malesuada dictum
+                diam, in venenatis nulla consectetur id. Sed interdum tortor risus, a vestibulum mauris luctus a. Aenean
+                tempor finibus ligula, eget volutpat massa egestas eget. In molestie lobortis scelerisque. In lectus
+                orci, hendrerit eleifend sodales sed, lobortis quis quam. Fusce ullamcorper enim vitae nunc commodo, sit
+                amet pretium lectus facilisis. Nulla aliquam dapibus commodo. Sed nec tincidunt purus. Morbi nisl risus,
+                fringilla eget turpis sit amet, imperdiet fringilla velit. In dictum vitae neque eu vulputate. Quisque
+                pharetra pretium consectetur. Vestibulum finibus ut elit ut consectetur. Morbi at ante nec felis viverra
+                elementum. Curabitur ullamcorper malesuada sem id tristique. Phasellus placerat sapien eu ornare
+                vehicula. In tempus ac metus et euismod. Integer eleifend imperdiet turpis, nec cursus justo lobortis
+                eu. Praesent vel facilisis nisl. Curabitur posuere, tellus ut lobortis consectetur, metus felis
+                efficitur nulla, in mollis urna erat in nulla. Nullam efficitur semper tortor, nec interdum neque ornare
+                vehicula. Fusce quis imperdiet mi, eget ultrices neque. Vivamus placerat nec neque non accumsan. Fusce
+                et dolor vitae magna accumsan congue ac ut erat.
+              </p>
+            </template>
+          </vcf-enhanced-dialog>
+          <vaadin-button id="open-button1">Open Dialog</vaadin-button>
+          <script>
+            window.addEventListener('WebComponentsReady', () => {
+              const dialog = document.querySelector('#basic');
+              document.querySelector('#open-button1').addEventListener('click', () => (dialog.opened = true));
+              window.cancel = () => (dialog.opened = false);
+            });
+          </script>
+        </template>
+      </demo-snippet>
+
+      <h3>Dialog Size Themes</h3>
+      <demo-snippet>
+        <template>
+          <vcf-enhanced-dialog id="size-themes">
+            <template>
+              <h4 slot="header">Dialog Size Themes</h4>
+              <h1 id="size"></h1>
+            </template>
+          </vcf-enhanced-dialog>
+          <vaadin-button id="open-s">Small</vaadin-button>
+          <vaadin-button id="open-m">Medium</vaadin-button>
+          <vaadin-button id="open-l">Large</vaadin-button>
+          <script>
+            window.addEventListener('WebComponentsReady', () => {
+              const dialog = document.querySelector('#size-themes');
+              const open = (button, size) => {
+                button.addEventListener('click', () => {
+                  dialog.setAttribute('theme', size);
+                  dialog.opened = true;
+                  document.querySelector('#size').innerText = size[0].toUpperCase() + size.slice(1);
+                });
+              };
+              open(document.querySelector('#open-s'), 'small');
+              open(document.querySelector('#open-m'), 'medium');
+              open(document.querySelector('#open-l'), 'large');
+            });
+          </script>
         </template>
       </demo-snippet>
     </main>
