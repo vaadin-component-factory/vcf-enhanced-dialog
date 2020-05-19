@@ -8,8 +8,15 @@ import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styl
 registerStyles(
   'vcf-enhanced-dialog-overlay',
   css`
+    :host {
+      --_enhanced-dialog-content-padding: var(--lumo-space-l);
+    }
+
     [part='content'] {
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100vh - 6rem);
     }
 
     .header {
@@ -18,9 +25,8 @@ registerStyles(
     }
 
     .content {
-      max-height: calc(100vh - 110px - 6rem);
       box-sizing: border-box;
-      padding: var(--lumo-space-l);
+      padding: var(--_enhanced-dialog-content-padding);
       overflow: auto;
     }
 
@@ -48,6 +54,10 @@ registerStyles(
     :host([theme~='large']) [part='overlay'] {
       width: 90%;
       min-width: 40rem;
+    }
+
+    :host([theme~='no-padding']) {
+      --_enhanced-dialog-content-padding: 0;
     }
 
     @media screen and (max-width: 48rem) {
