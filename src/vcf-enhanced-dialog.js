@@ -74,6 +74,118 @@ registerStyles(
         min-width: 0;
       }
     }
+
+    /* DRAGGABLE STYLES */
+
+    :host([draggable]) [part='content'],
+    :host([draggable]) [part='content'] .header,
+    :host([draggable]) [part='content'] .content,
+    :host([draggable]) [part='content'] .footer {
+      cursor: move;
+    }
+
+    :host([draggable]) [part='content'] .header *,
+    :host([draggable]) [part='content'] .content *,
+    :host([draggable]) [part='content'] .footer * {
+      cursor: auto;
+    }
+
+    /* RESIZER STYLES */
+
+    :host([theme~='small'][resizable]) [part='overlay'],
+    :host([theme~='medium'][resizable]) [part='overlay'],
+    :host([theme~='large'][resizable]) [part='overlay'] {
+      min-width: 0;
+    }
+
+    [part='overlay'] {
+      position: relative;
+      overflow: visible;
+    }
+
+    /* Hack for iOS to make the overlay take full size */
+    [part='overlay'][style] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    [part='content'] {
+      box-sizing: border-box;
+      height: 100%;
+    }
+
+    .resizer-container {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+    }
+
+    :host(:not([resizable])) .resizer {
+      display: none;
+    }
+
+    .resizer {
+      position: absolute;
+      height: 16px;
+      width: 16px;
+    }
+
+    .resizer.edge {
+      height: 8px;
+      width: 8px;
+      top: -4px;
+      right: -4px;
+      bottom: -4px;
+      left: -4px;
+    }
+
+    .resizer.edge.n {
+      width: auto;
+      bottom: auto;
+      cursor: ns-resize;
+    }
+
+    .resizer.ne {
+      top: -4px;
+      right: -4px;
+      cursor: nesw-resize;
+    }
+
+    .resizer.edge.e {
+      height: auto;
+      left: auto;
+      cursor: ew-resize;
+    }
+
+    .resizer.se {
+      bottom: -4px;
+      right: -4px;
+      cursor: nwse-resize;
+    }
+
+    .resizer.edge.s {
+      width: auto;
+      top: auto;
+      cursor: ns-resize;
+    }
+
+    .resizer.sw {
+      bottom: -4px;
+      left: -4px;
+      cursor: nesw-resize;
+    }
+
+    .resizer.edge.w {
+      height: auto;
+      right: auto;
+      cursor: ew-resize;
+    }
+
+    .resizer.nw {
+      top: -4px;
+      left: -4px;
+      cursor: nwse-resize;
+    }
   `
 );
 
@@ -100,13 +212,13 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
     if (!overlayMemoizedTemplate) {
       overlayMemoizedTemplate = super.template.cloneNode(true);
       const contentPartTemplate = html`
-        <div class="header empty">
+        <div id="header" class="header empty">
           <slot id="headerSlot" name="header"></slot>
         </div>
-        <div class="content">
+        <div id="innerContent" class="content">
           <slot></slot>
         </div>
-        <div class="footer empty">
+        <div id="footer" class="footer empty">
           <slot id="footerSlot" name="footer"></slot>
         </div>
       `;
@@ -125,7 +237,13 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
 
   static get properties() {
     return {
+      /**
+       * @type {Boolean}
+       */
       modeless: Boolean,
+      /**
+       * @type {Boolean}
+       */
       withBackdrop: Boolean
     };
   }
@@ -192,6 +310,12 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  *
  * ### Styling
  *
+ * The following custom properties are available for styling:
+ *
+ * Custom property | Description | Default
+ * ----------------|-------------|-------------
+ * `--_enhanced-dialog-content-padding` | Padding for overlay content area | `var(--lumo-space-l)` [`1.5rem`]
+ *
  * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
  * for `<vcf-enhanced-dialog-overlay>` parts.
  *
@@ -216,6 +340,7 @@ class VcfEnhancedDialog extends DialogElement {
           modeless="[[modeless]]"
           with-backdrop="[[!modeless]]"
           resizable$="[[resizable]]"
+          draggable$="[[draggable]]"
           focus-trap=""
           header="[[header]]"
         >
@@ -234,6 +359,41 @@ class VcfEnhancedDialog extends DialogElement {
 
   static get version() {
     return '0.1.1';
+  }
+
+  _startDrag(e) {
+    if (this.draggable && (e.button === 0 || e.touches)) {
+      const resizerContainer = this.$.overlay.$.resizerContainer;
+      const isResizerContainer = e.target === resizerContainer;
+      const isResizerContainerScrollbar = e.offsetX > resizerContainer.clientWidth || e.offsetY > resizerContainer.clientHeight;
+      const isContentPart =
+        e.target === this.$.overlay.$.content ||
+        e.target === this.$.overlay.$.header ||
+        e.target === this.$.overlay.$.innerContent ||
+        e.target === this.$.overlay.$.footer;
+      const isDraggable = e.target.classList.contains('draggable');
+
+      if ((isResizerContainer && !isResizerContainerScrollbar) || isContentPart || isDraggable) {
+        // Is needed to prevent text selection in Safari
+        !this._touchDevice && !isDraggable && e.preventDefault();
+        this._originalBounds = this._getOverlayBounds();
+
+        const event = this.__getMouseOrFirstTouchEvent(e);
+
+        this._originalMouseCoords = {
+          top: event.pageY,
+          left: event.pageX
+        };
+        window.addEventListener('mouseup', this._stopDrag);
+        window.addEventListener('touchend', this._stopDrag);
+        window.addEventListener('mousemove', this._drag);
+        window.addEventListener('touchmove', this._drag);
+
+        if (this.$.overlay.$.overlay.style.position !== 'absolute') {
+          this._setBounds(this._originalBounds);
+        }
+      }
+    }
   }
 
   /**
