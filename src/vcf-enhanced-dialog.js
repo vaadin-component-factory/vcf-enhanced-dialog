@@ -61,10 +61,16 @@ registerStyles(
     }
 
     @media screen and (max-width: 48rem) {
-      :host([theme~='small']) [part='overlay'],
       :host([theme~='medium']) [part='overlay'],
       :host([theme~='large']) [part='overlay'] {
-        width: auto;
+        width: 95%;
+        min-width: 0;
+      }
+    }
+
+    @media screen and (max-width: 30rem) {
+      :host([theme~='small']) [part='overlay'] {
+        width: 95%;
         min-width: 0;
       }
     }
