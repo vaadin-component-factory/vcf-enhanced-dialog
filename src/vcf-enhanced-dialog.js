@@ -358,7 +358,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '0.1.1';
+    return '0.1.2';
   }
 
   _startDrag(e) {
