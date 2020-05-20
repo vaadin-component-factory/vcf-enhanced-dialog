@@ -7,7 +7,10 @@
     <script dev src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <script dev type="module" src="demo.js"></script>
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
+      <style is="custom-style" include="demo-pages-shared-styles lumo-typography">
+        body {
+          background-color: #fefeff;
+        }
         .centered {
           max-width: 1000px;
         }
@@ -27,7 +30,7 @@
   <body>
     <main class="vertical-section-container centered hidden">
       <h4><a href="api/#/elements/Vaadin.VcfEnhancedDialog">API documentation ↗</a></h4>
-      <h3>Basic Enhanced Dialog</h3>
+      <h2>Basic Enhanced Dialog</h2>
       <demo-snippet>
         <template>
           <vcf-enhanced-dialog id="basic">
@@ -77,7 +80,7 @@
         </template>
       </demo-snippet>
 
-      <h3>Dialog Size Themes</h3>
+      <h2>Dialog Size Themes</h2>
       <demo-snippet>
         <template>
           <vcf-enhanced-dialog id="size-themes">
@@ -88,9 +91,7 @@
           </vcf-enhanced-dialog>
 
           <vaadin-button id="open-s">Small</vaadin-button>
-          &nbsp;
           <vaadin-button id="open-m">Medium</vaadin-button>
-          &nbsp;
           <vaadin-button id="open-l">Large</vaadin-button>
 
           <script>
@@ -103,9 +104,50 @@
                   document.querySelector('#size').innerText = size[0].toUpperCase() + size.slice(1);
                 });
               };
+
               open(document.querySelector('#open-s'), 'small');
               open(document.querySelector('#open-m'), 'medium');
               open(document.querySelector('#open-l'), 'large');
+            });
+          </script>
+        </template>
+      </demo-snippet>
+
+      <h2>Modeless Draggable Resizable Dialogs</h2>
+      <demo-snippet>
+        <template>
+          <vaadin-button class="mdr">Toggle dialog 1</vaadin-button>
+          <vaadin-button class="mdr">Toggle dialog 2</vaadin-button>
+
+          <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
+          <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
+
+          <script>
+            window.addEventListener('WebComponentsReady', () => {
+              const dialogs = document.querySelectorAll('vcf-enhanced-dialog.mdr');
+              dialogs.forEach((dialog, i) => {
+                dialog.renderer = (root, dialog) => {
+                  const header = document.createElement('h3');
+                  header.setAttribute('slot', 'header');
+                  header.textContent = 'Modeless Draggable Resizable Dialog ' + (i + 1);
+
+                  const closeButton = document.createElement('vaadin-button');
+                  closeButton.setAttribute('slot', 'footer');
+                  closeButton.setAttribute('theme', 'tertiary');
+                  closeButton.textContent = 'Close';
+                  closeButton.addEventListener('click', () => {
+                    dialog.opened = false;
+                  });
+
+                  root.textContent = 'Drag me around and resize me!';
+                  root.appendChild(header);
+                  root.appendChild(closeButton);
+                };
+
+                document.querySelectorAll('vaadin-button.mdr')[i].addEventListener('click', () => {
+                  dialog.opened = !dialog.opened;
+                });
+              });
             });
           </script>
         </template>

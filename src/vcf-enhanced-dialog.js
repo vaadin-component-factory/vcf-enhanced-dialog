@@ -28,6 +28,7 @@ registerStyles(
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
       overflow: auto;
+      flex: 1 0 auto;
     }
 
     .footer {
@@ -358,7 +359,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '0.1.2';
+    return '0.1.3';
   }
 
   _startDrag(e) {
