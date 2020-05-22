@@ -9,149 +9,194 @@
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles lumo-typography">
         body {
-          background-color: #fefeff;
+          background-color: var(--lumo-base-color);
+          padding: 0;
+        }
+        h1 {
+          padding: 0 0 var(--lumo-space-l) var(--lumo-space-m);
+        }
+        h2 {
+          padding: var(--lumo-space-l) 0 var(--lumo-space-l) var(--lumo-space-m);
+        }
+        vcf-anchor-nav {
+          opacity: 1;
+          transition: opacity 0.5s;
+          --_anchor-nav-inner-max-width: 1000px;
+        }
+        vcf-anchor-nav::part(tabs) {
+          box-shadow: inset 0 -1px 0 0 var(--lumo-contrast-20pct);
+        }
+        vcf-anchor-nav-section {
+          height: auto;
+          background-color: var(--lumo-base-color);
+        }
+        vaadin-button.nav {
+          cursor: pointer;
+        }
+        .hidden {
+          opacity: 0;
         }
         .centered {
           max-width: 1000px;
         }
-        main {
-          opacity: 1;
-          transition: opacity 0.5s;
-        }
-        main.hidden {
-          opacity: 0;
+        .nav {
+          margin: var(--lumo-space-l) var(--lumo-space-m) var(--lumo-space-l) calc(var(--lumo-button-size) * -1 / 6);
         }
       </style>
     </custom-style>
     <script>
-      window.addEventListener('WebComponentsReady', () => document.querySelector('main').classList.remove('hidden'));
+      window.addEventListener('WebComponentsReady', () => {
+        document.querySelectorAll('.hidden').forEach(element => element.classList.remove('hidden'));
+      });
     </script>
   </head>
   <body>
-    <main class="vertical-section-container centered hidden">
-      <h4><a href="api/#/elements/Vaadin.VcfEnhancedDialog">API documentation ↗</a></h4>
-      <h2>Basic Enhanced Dialog</h2>
-      <demo-snippet>
-        <template>
-          <vcf-enhanced-dialog id="basic">
-            <template>
-              <h4 slot="header">Example Header</h4>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit, libero vel suscipit finibus, sapien mi luctus ligula,
-                in placerat sapien lacus a ex. Quisque arcu mauris, porta in interdum ac, gravida at odio. Integer in aliquet metus, sed pulvinar
-                lectus. Suspendisse potenti. Pellentesque sed urna quis ligula lacinia aliquet. Phasellus iaculis sapien nulla, vitae lobortis libero
-                mollis sed. Ut suscipit porta odio id interdum. Aliquam id ipsum nisi. Nam et condimentum eros, id facilisis mauris. Nulla maximus at
-                tortor sodales auctor. Cras facilisis, enim vitae dapibus ultrices, tortor neque feugiat risus, vel gravida odio tortor eu odio. Nulla
-                non diam pellentesque, eleifend lacus ullamcorper, sodales nibh. Etiam pellentesque maximus ligula. Cras mattis dui non lectus finibus
-                molestie. Fusce posuere rhoncus finibus. Mauris imperdiet elit eu diam finibus bibendum. Fusce vestibulum egestas nisl vitae mattis.
-                Donec tincidunt est non mauris egestas viverra. Nulla dignissim purus dui, ac tincidunt velit molestie id. Mauris nec quam rhoncus,
-                faucibus ipsum ultrices, lobortis ex. Mauris maximus nisi non tortor rutrum, non dictum arcu finibus. Curabitur malesuada mauris eu
-                ligula bibendum sollicitudin. Nulla facilisi. Aenean at ante sapien. Nulla ac lorem sit amet risus sollicitudin fringilla. Proin
-                pulvinar congue augue non feugiat. In a arcu in libero maximus varius sit amet ac est. Duis vel commodo metus, vehicula gravida orci.
-                Vestibulum posuere nibh vel vehicula consequat. Vestibulum consequat odio nec mauris scelerisque porttitor. Orci varius natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id purus sed risus venenatis porttitor quis ultrices eros.
-                Praesent malesuada quis ipsum sit amet tempor. Nulla interdum ac dolor eu euismod. Fusce venenatis sodales ipsum ut efficitur. Fusce
-                maximus malesuada turpis, nec mattis nisl sagittis sit amet. Ut malesuada dictum diam, in venenatis nulla consectetur id. Sed interdum
-                tortor risus, a vestibulum mauris luctus a. Aenean tempor finibus ligula, eget volutpat massa egestas eget. In molestie lobortis
-                scelerisque. In lectus orci, hendrerit eleifend sodales sed, lobortis quis quam. Fusce ullamcorper enim vitae nunc commodo, sit amet
-                pretium lectus facilisis. Nulla aliquam dapibus commodo. Sed nec tincidunt purus. Morbi nisl risus, fringilla eget turpis sit amet,
-                imperdiet fringilla velit. In dictum vitae neque eu vulputate. Quisque pharetra pretium consectetur. Vestibulum finibus ut elit ut
-                consectetur. Morbi at ante nec felis viverra elementum. Curabitur ullamcorper malesuada sem id tristique. Phasellus placerat sapien eu
-                ornare vehicula. In tempus ac metus et euismod. Integer eleifend imperdiet turpis, nec cursus justo lobortis eu. Praesent vel
-                facilisis nisl. Curabitur posuere, tellus ut lobortis consectetur, metus felis efficitur nulla, in mollis urna erat in nulla. Nullam
-                efficitur semper tortor, nec interdum neque ornare vehicula. Fusce quis imperdiet mi, eget ultrices neque. Vivamus placerat nec neque
-                non accumsan. Fusce et dolor vitae magna accumsan congue ac ut erat.
-              </p>
-              <vaadin-button slot="footer" theme="tertiary" onclick="cancel()">Cancel</vaadin-button>
-            </template>
-          </vcf-enhanced-dialog>
+    <vcf-anchor-nav fullscreen class="hidden">
+      <a slot="header" href="/api/#/elements/vcf-enhanced-dialog">
+        <vaadin-button theme="tertiary" class="nav hidden">
+          <iron-icon icon="lumo:angle-right" slot="suffix"></iron-icon>
+          API
+        </vaadin-button>
+      </a>
 
-          <vaadin-button id="open">Open Dialog</vaadin-button>
+      <h1 slot="header" class="hidden"><code>&lt;vcf-enhanced-dialog&gt;</code></h1>
 
-          <script>
-            window.addEventListener('WebComponentsReady', () => {
-              const dialog = document.querySelector('#basic');
-              document.querySelector('#open').addEventListener('click', () => {
-                dialog.opened = true;
-              });
-              window.cancel = () => (dialog.opened = false);
-            });
-          </script>
-        </template>
-      </demo-snippet>
+      <vcf-anchor-nav-section name="Header Content Footer">
+        <h2 slot="header" class="hidden">Header Content Footer</h2>
+        <demo-snippet>
+          <template>
+            <vcf-enhanced-dialog id="basic">
+              <template>
+                <h4 slot="header">Example Header</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit, libero vel suscipit
+                  finibus, sapien mi luctus ligula, in placerat sapien lacus a ex. Quisque arcu mauris, porta in
+                  interdum ac, gravida at odio. Integer in aliquet metus, sed pulvinar lectus. Suspendisse potenti.
+                  Pellentesque sed urna quis ligula lacinia aliquet. Phasellus iaculis sapien nulla, vitae lobortis
+                  libero mollis sed. Ut suscipit porta odio id interdum. Aliquam id ipsum nisi. Nam et condimentum eros,
+                  id facilisis mauris. Nulla maximus at tortor sodales auctor. Cras facilisis, enim vitae dapibus
+                  ultrices, tortor neque feugiat risus, vel gravida odio tortor eu odio. Nulla non diam pellentesque,
+                  eleifend lacus ullamcorper, sodales nibh. Etiam pellentesque maximus ligula. Cras mattis dui non
+                  lectus finibus molestie. Fusce posuere rhoncus finibus. Mauris imperdiet elit eu diam finibus
+                  bibendum. Fusce vestibulum egestas nisl vitae mattis. Donec tincidunt est non mauris egestas viverra.
+                  Nulla dignissim purus dui, ac tincidunt velit molestie id. Mauris nec quam rhoncus, faucibus ipsum
+                  ultrices, lobortis ex. Mauris maximus nisi non tortor rutrum, non dictum arcu finibus. Curabitur
+                  malesuada mauris eu ligula bibendum sollicitudin. Nulla facilisi. Aenean at ante sapien. Nulla ac
+                  lorem sit amet risus sollicitudin fringilla. Proin pulvinar congue augue non feugiat. In a arcu in
+                  libero maximus varius sit amet ac est. Duis vel commodo metus, vehicula gravida orci. Vestibulum
+                  posuere nibh vel vehicula consequat. Vestibulum consequat odio nec mauris scelerisque porttitor. Orci
+                  varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec id purus sed
+                  risus venenatis porttitor quis ultrices eros. Praesent malesuada quis ipsum sit amet tempor. Nulla
+                  interdum ac dolor eu euismod. Fusce venenatis sodales ipsum ut efficitur. Fusce maximus malesuada
+                  turpis, nec mattis nisl sagittis sit amet. Ut malesuada dictum diam, in venenatis nulla consectetur
+                  id. Sed interdum tortor risus, a vestibulum mauris luctus a. Aenean tempor finibus ligula, eget
+                  volutpat massa egestas eget. In molestie lobortis scelerisque. In lectus orci, hendrerit eleifend
+                  sodales sed, lobortis quis quam. Fusce ullamcorper enim vitae nunc commodo, sit amet pretium lectus
+                  facilisis. Nulla aliquam dapibus commodo. Sed nec tincidunt purus. Morbi nisl risus, fringilla eget
+                  turpis sit amet, imperdiet fringilla velit. In dictum vitae neque eu vulputate. Quisque pharetra
+                  pretium consectetur. Vestibulum finibus ut elit ut consectetur. Morbi at ante nec felis viverra
+                  elementum. Curabitur ullamcorper malesuada sem id tristique. Phasellus placerat sapien eu ornare
+                  vehicula. In tempus ac metus et euismod. Integer eleifend imperdiet turpis, nec cursus justo lobortis
+                  eu. Praesent vel facilisis nisl. Curabitur posuere, tellus ut lobortis consectetur, metus felis
+                  efficitur nulla, in mollis urna erat in nulla. Nullam efficitur semper tortor, nec interdum neque
+                  ornare vehicula. Fusce quis imperdiet mi, eget ultrices neque. Vivamus placerat nec neque non
+                  accumsan. Fusce et dolor vitae magna accumsan congue ac ut erat.
+                </p>
+                <vaadin-button slot="footer" theme="tertiary" onclick="cancel()">Cancel</vaadin-button>
+              </template>
+            </vcf-enhanced-dialog>
 
-      <h2>Dialog Size Themes</h2>
-      <demo-snippet>
-        <template>
-          <vcf-enhanced-dialog id="size-themes">
-            <template>
-              <h4 slot="header">Dialog Size Themes</h4>
-              <h1 id="size"></h1>
-            </template>
-          </vcf-enhanced-dialog>
+            <vaadin-button id="open">Open Dialog</vaadin-button>
 
-          <vaadin-button id="open-s">Small</vaadin-button>
-          <vaadin-button id="open-m">Medium</vaadin-button>
-          <vaadin-button id="open-l">Large</vaadin-button>
-
-          <script>
-            window.addEventListener('WebComponentsReady', () => {
-              const dialog = document.querySelector('#size-themes');
-              const open = (button, size) => {
-                button.addEventListener('click', () => {
-                  dialog.setAttribute('theme', size);
+            <script>
+              window.addEventListener('WebComponentsReady', () => {
+                const dialog = document.querySelector('#basic');
+                document.querySelector('#open').addEventListener('click', () => {
                   dialog.opened = true;
-                  document.querySelector('#size').innerText = size[0].toUpperCase() + size.slice(1);
                 });
-              };
+                window.cancel = () => (dialog.opened = false);
+              });
+            </script>
+          </template>
+        </demo-snippet>
+      </vcf-anchor-nav-section>
 
-              open(document.querySelector('#open-s'), 'small');
-              open(document.querySelector('#open-m'), 'medium');
-              open(document.querySelector('#open-l'), 'large');
-            });
-          </script>
-        </template>
-      </demo-snippet>
+      <vcf-anchor-nav-section name="Size Themes">
+        <h2 slot="header" class="hidden">Size Themes</h2>
+        <demo-snippet>
+          <template>
+            <vcf-enhanced-dialog id="size-themes">
+              <template>
+                <h4 slot="header">Size Themes</h4>
+                <h1 id="size"></h1>
+              </template>
+            </vcf-enhanced-dialog>
 
-      <h2>Modeless Draggable Resizable Dialogs</h2>
-      <demo-snippet>
-        <template>
-          <vaadin-button class="mdr">Toggle dialog 1</vaadin-button>
-          <vaadin-button class="mdr">Toggle dialog 2</vaadin-button>
+            <vaadin-button id="open-s">Small</vaadin-button>
+            <vaadin-button id="open-m">Medium</vaadin-button>
+            <vaadin-button id="open-l">Large</vaadin-button>
 
-          <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
-          <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
-
-          <script>
-            window.addEventListener('WebComponentsReady', () => {
-              const dialogs = document.querySelectorAll('vcf-enhanced-dialog.mdr');
-              dialogs.forEach((dialog, i) => {
-                dialog.renderer = (root, dialog) => {
-                  const header = document.createElement('h3');
-                  header.setAttribute('slot', 'header');
-                  header.textContent = 'Modeless Draggable Resizable Dialog ' + (i + 1);
-
-                  const closeButton = document.createElement('vaadin-button');
-                  closeButton.setAttribute('slot', 'footer');
-                  closeButton.setAttribute('theme', 'tertiary');
-                  closeButton.textContent = 'Close';
-                  closeButton.addEventListener('click', () => {
-                    dialog.opened = false;
+            <script>
+              window.addEventListener('WebComponentsReady', () => {
+                const dialog = document.querySelector('#size-themes');
+                const open = (button, size) => {
+                  button.addEventListener('click', () => {
+                    dialog.setAttribute('theme', size);
+                    dialog.opened = true;
+                    document.querySelector('#size').innerText = size[0].toUpperCase() + size.slice(1);
                   });
-
-                  root.textContent = 'Drag me around and resize me!';
-                  root.appendChild(header);
-                  root.appendChild(closeButton);
                 };
 
-                document.querySelectorAll('vaadin-button.mdr')[i].addEventListener('click', () => {
-                  dialog.opened = !dialog.opened;
+                open(document.querySelector('#open-s'), 'small');
+                open(document.querySelector('#open-m'), 'medium');
+                open(document.querySelector('#open-l'), 'large');
+              });
+            </script>
+          </template>
+        </demo-snippet>
+      </vcf-anchor-nav-section>
+
+      <vcf-anchor-nav-section name="Modeless Draggable Resizable">
+        <h2 slot="header" class="hidden">Modeless Draggable Resizable</h2>
+        <demo-snippet>
+          <template>
+            <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
+            <vcf-enhanced-dialog class="mdr" modeless draggable resizable></vcf-enhanced-dialog>
+
+            <vaadin-button class="mdr">Toggle 1</vaadin-button>
+            <vaadin-button class="mdr">Toggle 2</vaadin-button>
+
+            <script>
+              window.addEventListener('WebComponentsReady', () => {
+                const dialogs = document.querySelectorAll('vcf-enhanced-dialog.mdr');
+                dialogs.forEach((dialog, i) => {
+                  dialog.renderer = (root, dialog) => {
+                    const header = document.createElement('h3');
+                    header.setAttribute('slot', 'header');
+                    header.textContent = 'Modeless Draggable Resizable Dialog ' + (i + 1);
+
+                    const closeButton = document.createElement('vaadin-button');
+                    closeButton.setAttribute('slot', 'footer');
+                    closeButton.setAttribute('theme', 'tertiary');
+                    closeButton.textContent = 'Close';
+                    closeButton.addEventListener('click', () => {
+                      dialog.opened = false;
+                    });
+
+                    root.textContent = 'Drag me around and resize me!';
+                    root.appendChild(header);
+                    root.appendChild(closeButton);
+                  };
+
+                  document.querySelectorAll('vaadin-button.mdr')[i].addEventListener('click', () => {
+                    dialog.opened = !dialog.opened;
+                  });
                 });
               });
-            });
-          </script>
-        </template>
-      </demo-snippet>
-    </main>
+            </script>
+          </template>
+        </demo-snippet>
+      </vcf-anchor-nav-section>
+    </vcf-anchor-nav>
   </body>
 </html>

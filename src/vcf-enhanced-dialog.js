@@ -366,7 +366,7 @@ class VcfEnhancedDialog extends DialogElement {
     if (this.draggable && (e.button === 0 || e.touches)) {
       const resizerContainer = this.$.overlay.$.resizerContainer;
       const isResizerContainer = e.target === resizerContainer;
-      const isResizerContainerScrollbar = e.offsetX > resizerContainer.clientWidth || e.offsetY > resizerContainer.clientHeight;
+      const isScrollbar = e.offsetX > resizerContainer.clientWidth || e.offsetY > resizerContainer.clientHeight;
       const isContentPart =
         e.target === this.$.overlay.$.content ||
         e.target === this.$.overlay.$.header ||
@@ -374,7 +374,7 @@ class VcfEnhancedDialog extends DialogElement {
         e.target === this.$.overlay.$.footer;
       const isDraggable = e.target.classList.contains('draggable');
 
-      if ((isResizerContainer && !isResizerContainerScrollbar) || isContentPart || isDraggable) {
+      if ((isResizerContainer && !isScrollbar) || isContentPart || isDraggable) {
         // Is needed to prevent text selection in Safari
         !this._touchDevice && !isDraggable && e.preventDefault();
         this._originalBounds = this._getOverlayBounds();
