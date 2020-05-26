@@ -121,7 +121,7 @@
         </demo-snippet>
       </vcf-anchor-nav-section>
 
-      <vcf-anchor-nav-section name="Size Themes">
+      <vcf-anchor-nav-section id="size-themes-section" name="Size Themes">
         <h2 slot="header" class="hidden">Size Themes</h2>
         <demo-snippet>
           <template>
@@ -141,8 +141,8 @@
                 const dialog = document.querySelector('#size-themes');
                 const open = (button, size) => {
                   button.addEventListener('click', () => {
-                    dialog.setAttribute('theme', size);
                     dialog.opened = true;
+                    dialog.setAttribute('theme', size);
                     document.querySelector('#size').innerText = size[0].toUpperCase() + size.slice(1);
                   });
                 };
