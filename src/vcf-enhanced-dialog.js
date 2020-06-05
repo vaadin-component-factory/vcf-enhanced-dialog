@@ -28,7 +28,7 @@ registerStyles(
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
       overflow: auto;
-      flex: 1 0 auto;
+      flex: 1 1 auto;
     }
 
     .footer {
