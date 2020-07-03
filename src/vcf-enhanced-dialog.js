@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { DialogElement } from '@vaadin/vaadin-dialog/src/vaadin-dialog';
 import { OverlayElement } from '@vaadin/vaadin-overlay/src/vaadin-overlay.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
@@ -200,10 +201,11 @@ let dialogMemoizedTemplate;
  *
  * ### Styling
  *
- * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
+ * See [`<vcf-enhanced-dialog>` documentation](https://vcf-enhanced-dialog.netlify.app/api/#/elements/vcf-enhanced-dialog)
  * for `<vcf-enhanced-dialog-overlay>` parts.
  *
- * @extends PolymerElement
+ * @extends OverlayElement
+ * @mixes IronResizableBehavior
  * @private
  */
 class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, OverlayElement) {
@@ -376,7 +378,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.1';
+    return '1.0.2';
   }
 
   _startDrag(e) {

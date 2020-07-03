@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-enhanced-dialog",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Vaadin dialog extension with header, footer and scrolling content area.",
   "main": "theme/lumo/vcf-enhanced-dialog.js",
   "author": "Vaadin Ltd",
@@ -60,7 +60,7 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@polymer/iron-iconset-svg": "^3.0.1",
     "@polymer/test-fixture": "^4.0.2",
-    "@vaadin-component-factory/vcf-anchor-nav": "^1.0.4",
+    "@vaadin-component-factory/vcf-anchor-nav": "^1.0.5",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",

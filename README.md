@@ -6,14 +6,14 @@
 
 `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs.
 
-This is an extension of the [`<vaadin-dialog>`](https://vaadin.com/components/dialog)
+This is an extension of [`<vaadin-dialog>`](https://vaadin.com/components/vaadin-dialog/html-api/elements/Vaadin.DialogElement)
 that adds the following features:
 
 - Header and footer slots.
 - Scrollable content area.
 - Size themes.
 
-![enhanced-dialog-1](https://user-images.githubusercontent.com/3392815/86483233-4a55cf80-bd5c-11ea-9aa8-8e5a0cc76e71.png)
+![Screenshot for Vaadin Component Factory enhanced dialog](https://user-images.githubusercontent.com/3392815/86489191-45991780-bd6c-11ea-8ba4-95db204b0681.png)
 
 [Live demo ↗](https://vcf-enhanced-dialog.netlify.app)
 |
