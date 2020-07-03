@@ -20,12 +20,12 @@ registerStyles(
       max-height: calc(100vh - 6rem);
     }
 
-    .header {
+    [part='header'] {
       padding: var(--lumo-space-s) var(--lumo-space-l);
       border-bottom: 1px solid var(--lumo-shade-10pct);
     }
 
-    .content {
+    [part='dialog-content'] {
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
       flex: 1 1 auto;
@@ -34,7 +34,7 @@ registerStyles(
       -webkit-overflow-scrolling: touch;
     }
 
-    .footer {
+    [part='footer'] {
       padding: var(--lumo-space-s) var(--lumo-space-l);
       background-color: var(--lumo-primary-color-10pct);
     }
@@ -82,15 +82,15 @@ registerStyles(
     /* DRAGGABLE STYLES */
 
     :host([draggable]) [part='content'],
-    :host([draggable]) [part='content'] .header,
-    :host([draggable]) [part='content'] .content,
-    :host([draggable]) [part='content'] .footer {
+    :host([draggable]) [part='content'] [part='header'],
+    :host([draggable]) [part='content'] [part='dialog-content'],
+    :host([draggable]) [part='content'] [part='footer'] {
       cursor: move;
     }
 
-    :host([draggable]) [part='content'] .header *,
-    :host([draggable]) [part='content'] .content *,
-    :host([draggable]) [part='content'] .footer * {
+    :host([draggable]) [part='content'] [part='header'] *,
+    :host([draggable]) [part='content'] [part='dialog-content'] *,
+    :host([draggable]) [part='content'] [part='footer'] * {
       cursor: auto;
     }
 
@@ -197,12 +197,17 @@ let overlayMemoizedTemplate;
 let dialogMemoizedTemplate;
 
 /**
- * The overlay element.
+ * The overlay element for [`<vcf-enhanced-dialog>`](/api/#/elements/vcf-enhanced-dialog).
  *
  * ### Styling
  *
- * See [`<vcf-enhanced-dialog>` documentation](https://vcf-enhanced-dialog.netlify.app/api/#/elements/vcf-enhanced-dialog)
- * for `<vcf-enhanced-dialog-overlay>` parts.
+ * The following Shadow DOM parts are available for styling the overlay component itself:
+ *
+ * Part name | Description
+ * --|--
+ * `header` | Header section of the dialog.
+ * `dialog-content` | Content section of the dialog.
+ * `footer` | Footer section of the dialog.
  *
  * @extends OverlayElement
  * @mixes IronResizableBehavior
@@ -217,13 +222,13 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
     if (!overlayMemoizedTemplate) {
       overlayMemoizedTemplate = super.template.cloneNode(true);
       const contentPartTemplate = html`
-        <div id="header" class="header empty">
+        <div id="header" class="empty" part="header">
           <slot id="headerSlot" name="header"></slot>
         </div>
-        <div id="innerContent" class="content">
+        <div id="dialogContent" part="dialog-content">
           <slot></slot>
         </div>
-        <div id="footer" class="footer empty">
+        <div id="footer" class="empty" part="footer">
           <slot id="footerSlot" name="footer"></slot>
         </div>
       `;
@@ -324,9 +329,9 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  *
  * Slot name | Description | Default
  * --|--|--
- * _no-slot_ | Main content of the dialog. | _empty_
- * _header_ | Header section at the top of the dialog. | _empty_
- * _footer_ | Footer section at the bottom of the dialog. | _empty_
+ * | Main content of the dialog. |
+ * __header__ | Header section at the top of the dialog. |
+ * __footer__ | Footer section at the bottom of the dialog. |
  *
  * ### Styling
  *
@@ -336,8 +341,8 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  * --|--|--
  * `--_enhanced-dialog-content-padding` | Padding for overlay content area | `var(--lumo-space-l)` [`1.5rem`]
  *
- * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
- * for `<vcf-enhanced-dialog-overlay>` parts.
+ * See [`<vcf-enhanced-dialog-overlay>` documentation](/api/#/elements/vcf-enhanced-dialog-overlay)
+ * for stylable Shadow DOM parts.
  *
  * Note: the `theme` attribute value set on `<vaadin-dialog>` is
  * propagated to the internal `<vcf-enhanced-dialog-overlay>` component.
@@ -389,7 +394,7 @@ class VcfEnhancedDialog extends DialogElement {
       const isContentPart =
         e.target === this.$.overlay.$.content ||
         e.target === this.$.overlay.$.header ||
-        e.target === this.$.overlay.$.innerContent ||
+        e.target === this.$.overlay.$.dialogContent ||
         e.target === this.$.overlay.$.footer;
       const isDraggable = e.target.classList.contains('draggable');
 

@@ -9,15 +9,15 @@
 This is an extension of [`<vaadin-dialog>`](https://vaadin.com/components/vaadin-dialog/html-api/elements/Vaadin.DialogElement)
 that adds the following features:
 
-- Header and footer slots.
+- Header and footer sections.
 - Scrollable content area.
 - Size themes.
 
-![Screenshot for Vaadin Component Factory enhanced dialog](https://user-images.githubusercontent.com/3392815/86489191-45991780-bd6c-11ea-8ba4-95db204b0681.png)
+![Screenshot for Vaadin Component Factory enhanced dialog](https://user-images.githubusercontent.com/3392815/86490846-8e9f9a80-bd71-11ea-99cd-8e0a769ed8dd.png)
 
 [Live demo ↗](https://vcf-enhanced-dialog.netlify.app)
 |
-[API documentation ↗](https://vcf-enhanced-dialog.netlify.app/api/#/elements/Vaadin.VcfEnhancedDialog)
+[API documentation ↗](https://vcf-enhanced-dialog.netlify.app/api/#/elements/vcf-enhanced-dialog)
 
 ## Installation
 
@@ -59,14 +59,14 @@ Add `<vcf-enhanced-dialog>` element to the page. Use a `<template>` or [renderer
 
 ## Server-side API
 
-This is the client-side (Polymer 3) web component. If you are looking for this web components server-side (Java) API for the Vaadin Platform, it can be found here: https://vaadin.com/directory/component/enhanced-dialog
+This is the client-side (Polymer 3) web component. If you are looking for the server-side (Java) API for the Vaadin Platform, it can be found here: [Enhanced Dialog](https://vaadin.com/directory/component/enhanced-dialog)
 
 ## Vaadin Prime
 
-This component is available in the Vaadin Prime subscription. It is still open source, but you need to have a valid CVAL license in order to use it. Read more at: https://vaadin.com/pricing
+This component is available in the Vaadin Prime subscription. It is still open source, but you need to have a valid CVAL license in order to use it. Read more at: [Pricing](https://vaadin.com/pricing)
 
 ## License
 
-Commercial Vaadin Add-on License version 3 (CVALv3). For license terms, see LICENSE.
+Commercial Vaadin Add-on License version 3 (CVALv3). For license terms, see: [LICENSE](https://github.com/vaadin-component-factory/vcf-enhanced-dialog/blob/master/LICENSE)
 
-Vaadin collects development time usage statistics to improve this product. For details and to opt-out, see https://github.com/vaadin/vaadin-usage-statistics.
+Vaadin collects development time usage statistics to improve this product. For details and to opt-out, see: [Vaadin Usage Statistics](https://github.com/vaadin/vaadin-usage-statistics)
