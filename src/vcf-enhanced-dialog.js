@@ -27,8 +27,10 @@ registerStyles(
     .content {
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
-      overflow: auto;
       flex: 1 1 auto;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      -webkit-overflow-scrolling: touch;
     }
 
     .footer {
@@ -266,10 +268,17 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
 customElements.define(DialogOverlayElement.is, DialogOverlayElement);
 
 /**
+ * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs.
  *
- * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs. The content of the
- * dialog can be populated in two ways: imperatively by using renderer callback function and
- * declaratively by using Polymer's Templates.
+ * This is an extension of the [`<vaadin-dialog>`](https://vaadin.com/components/dialog)
+ * that adds the following features:
+ *
+ * - Header and footer slots.
+ * - Scrollable content area.
+ * - Size themes.
+ *
+ * The content of the dialog can be populated in two ways: imperatively by using
+ * renderer callback function and declaratively by using Polymer's Templates.
  *
  * ### Rendering
  *
@@ -309,12 +318,20 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  * </vcf-enhanced-dialog>
  * ```
  *
+ * ### Slots
+ *
+ * Slot name | Description | Default
+ * --|--|--
+ * _no-slot_ | Main content of the dialog. | _empty_
+ * _header_ | Header section at the top of the dialog. | _empty_
+ * _footer_ | Footer section at the bottom of the dialog. | _empty_
+ *
  * ### Styling
  *
  * The following custom properties are available for styling:
  *
  * Custom property | Description | Default
- * ----------------|-------------|-------------
+ * --|--|--
  * `--_enhanced-dialog-content-padding` | Padding for overlay content area | `var(--lumo-space-l)` [`1.5rem`]
  *
  * See [`<vaadin-overlay>` documentation](https://github.com/vaadin/vaadin-overlay/blob/master/src/vaadin-overlay.html)
