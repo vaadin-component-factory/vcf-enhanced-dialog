@@ -277,7 +277,7 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
 /**
  * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs.
  *
- * This is an extension of the [`<vaadin-dialog>`](https://vaadin.com/components/dialog)
+ * This is an extension of [`<vaadin-dialog>`](https://vaadin.com/components/dialog)
  * that adds the following features:
  *
  * - Header and footer slots.
