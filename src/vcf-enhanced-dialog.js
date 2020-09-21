@@ -383,7 +383,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.2';
+    return '1.0.3';
   }
 
   _startDrag(e) {
