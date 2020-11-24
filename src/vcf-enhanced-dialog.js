@@ -420,19 +420,6 @@ class VcfEnhancedDialog extends DialogElement {
       }
     }
   }
-
-  /**
-   * @protected
-   */
-  static _finalizeClass() {
-    super._finalizeClass();
-
-    const devModeCallback = window.Vaadin.developmentModeCallback;
-    const licenseChecker = devModeCallback && devModeCallback['vaadin-license-checker'];
-    if (typeof licenseChecker === 'function') {
-      licenseChecker(VcfEnhancedDialog);
-    }
-  }
 }
 
 customElements.define(VcfEnhancedDialog.is, VcfEnhancedDialog);
