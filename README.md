@@ -61,10 +61,6 @@ Add `<vcf-enhanced-dialog>` element to the page. Use a `<template>` or [renderer
 
 This is the client-side (Polymer 3) web component. If you are looking for the server-side (Java) API for the Vaadin Platform, it can be found here: [Enhanced Dialog](https://vaadin.com/directory/component/enhanced-dialog)
 
-## Vaadin Prime
-
-This component is available in the Vaadin Prime subscription. It is still open source, but you need to have a valid CVAL license in order to use it. Read more at: [Pricing](https://vaadin.com/pricing)
-
 ## License
 
 Apache License 2.0

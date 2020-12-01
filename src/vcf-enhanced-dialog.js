@@ -30,7 +30,7 @@ registerStyles(
       padding: var(--_enhanced-dialog-content-padding);
       flex: 1 1 auto;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -383,7 +383,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.4';
+    return '1.0.6';
   }
 
   _startDrag(e) {
