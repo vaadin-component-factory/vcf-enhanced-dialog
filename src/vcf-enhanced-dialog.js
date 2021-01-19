@@ -26,11 +26,12 @@ registerStyles(
     }
 
     [part='dialog-content'] {
+      position: relative;
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
       flex: 1 1 auto;
       overflow-x: hidden;
-      overflow-y: scroll;
+      overflow-y: auto;
       -webkit-overflow-scrolling: touch;
     }
 
@@ -383,7 +384,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.4';
+    return '1.0.6';
   }
 
   _startDrag(e) {
@@ -418,19 +419,6 @@ class VcfEnhancedDialog extends DialogElement {
           this._setBounds(this._originalBounds);
         }
       }
-    }
-  }
-
-  /**
-   * @protected
-   */
-  static _finalizeClass() {
-    super._finalizeClass();
-
-    const devModeCallback = window.Vaadin.developmentModeCallback;
-    const licenseChecker = devModeCallback && devModeCallback['vaadin-license-checker'];
-    if (typeof licenseChecker === 'function') {
-      licenseChecker(VcfEnhancedDialog);
     }
   }
 }
