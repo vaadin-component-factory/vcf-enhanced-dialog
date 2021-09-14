@@ -43,13 +43,13 @@
   "dependencies": {
     "@polymer/iron-resizable-behavior": "^3.0.0",
     "@polymer/polymer": "^3.0.0",
-    "@vaadin/vaadin-button": "^2.2.2",
-    "@vaadin/vaadin-dialog": "^2.3.0",
-    "@vaadin/vaadin-element-mixin": "^2.3.0",
-    "@vaadin/vaadin-lumo-styles": "^1.5.0",
-    "@vaadin/vaadin-material-styles": "^1.2.3",
-    "@vaadin/vaadin-overlay": "^3.3.0",
-    "@vaadin/vaadin-themable-mixin": "^1.5.2"
+    "@vaadin/vaadin-button": "^21.0.0",
+    "@vaadin/vaadin-dialog": "^21.0.0",
+    "@vaadin/vaadin-element-mixin": "^21.0.0",
+    "@vaadin/vaadin-lumo-styles": "^21.0.0",
+    "@vaadin/vaadin-material-styles": "^21.0.0",
+    "@vaadin/vaadin-overlay": "^21.0.0",
+    "@vaadin/vaadin-themable-mixin": "^21.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
