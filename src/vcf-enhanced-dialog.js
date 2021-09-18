@@ -26,6 +26,7 @@ registerStyles(
     }
 
     [part='dialog-content'] {
+      position: relative;
       box-sizing: border-box;
       padding: var(--_enhanced-dialog-content-padding);
       flex: 1 1 auto;
@@ -383,7 +384,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.6';
+    return '1.0.7';
   }
 
   _startDrag(e) {
