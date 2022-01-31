@@ -6,6 +6,7 @@ import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles';
 import { getMouseOrFirstTouchEvent } from '@vaadin/dialog/src/vaadin-dialog-utils';
+import '@vaadin/polymer-legacy-adapter/template-renderer.js';
 
 registerStyles(
   'vcf-enhanced-dialog-overlay',
