@@ -43,14 +43,14 @@
   "dependencies": {
     "@polymer/iron-resizable-behavior": "^3.0.0",
     "@polymer/polymer": "^3.0.0",
+    "@vaadin/polymer-legacy-adapter": "^22.0.3",
     "@vaadin/vaadin-button": "^22.0.3",
     "@vaadin/vaadin-dialog": "^22.0.3",
     "@vaadin/vaadin-element-mixin": "^21.0.5",
     "@vaadin/vaadin-lumo-styles": "^22.0.3",
     "@vaadin/vaadin-material-styles": "^22.0.3",
     "@vaadin/vaadin-overlay": "^22.0.3",
-    "@vaadin/vaadin-themable-mixin": "^22.0.3",
-    "@vaadin/polymer-legacy-adapter": "^22.0.3"
+    "@vaadin/vaadin-themable-mixin": "^22.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -61,6 +61,7 @@
     "@polymer/iron-iconset-svg": "^3.0.1",
     "@polymer/test-fixture": "^4.0.2",
     "@vaadin-component-factory/vcf-anchor-nav": "^1.0.5",
+    "@vaadin-component-factory/vcf-element-util": "^0.1.4",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
