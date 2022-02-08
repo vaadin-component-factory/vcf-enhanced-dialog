@@ -439,7 +439,7 @@ class EnhancedDialog extends Dialog {
   }
 
   static get version() {
-    return '22.0.4';
+    return '22.0.5';
   }
 
   _startDrag(e) {
