@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
-import { Dialog } from '@vaadin/vaadin-dialog/src/vaadin-dialog';
+// eslint-disable-next-line no-unused-vars
+import { Dialog, DialogOverlayBoundsParam, DialogOverlayBounds } from '@vaadin/vaadin-dialog/src/vaadin-dialog';
 import { OverlayElement } from '@vaadin/vaadin-overlay/src/vaadin-overlay.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
@@ -418,7 +418,7 @@ class EnhancedDialog extends Dialog {
           on-mousedown="_bringOverlayToFront"
           on-touchstart="_bringOverlayToFront"
           theme$="[[theme]]"
-          modeless="[[modeless]]"
+          ?modeless="[[modeless]]"
           with-backdrop="[[!modeless]]"
           resizable$="[[resizable]]"
           draggable$="[[draggable]]"
@@ -439,7 +439,7 @@ class EnhancedDialog extends Dialog {
   }
 
   static get version() {
-    return '22.0.5';
+    return '22.0.6';
   }
 
   _startDrag(e) {
