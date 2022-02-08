@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-enhanced-dialog",
-  "version": "1.0.7",
+  "version": "22.0.3",
   "description": "Vaadin dialog extension with header, footer and scrolling content area.",
   "main": "theme/lumo/vcf-enhanced-dialog.js",
   "author": "Vaadin Ltd",
@@ -43,13 +43,14 @@
   "dependencies": {
     "@polymer/iron-resizable-behavior": "^3.0.0",
     "@polymer/polymer": "^3.0.0",
-    "@vaadin/vaadin-button": "^2.2.2",
-    "@vaadin/vaadin-dialog": "^2.3.0",
-    "@vaadin/vaadin-element-mixin": "^2.3.0",
-    "@vaadin/vaadin-lumo-styles": "^1.5.0",
-    "@vaadin/vaadin-material-styles": "^1.2.3",
-    "@vaadin/vaadin-overlay": "^3.3.0",
-    "@vaadin/vaadin-themable-mixin": "^1.5.2"
+    "@vaadin/vaadin-button": "^22.0.3",
+    "@vaadin/vaadin-dialog": "^22.0.3",
+    "@vaadin/vaadin-element-mixin": "^21.0.5",
+    "@vaadin/vaadin-lumo-styles": "^22.0.3",
+    "@vaadin/vaadin-material-styles": "^22.0.3",
+    "@vaadin/vaadin-overlay": "^22.0.3",
+    "@vaadin/vaadin-themable-mixin": "^22.0.3",
+    "@vaadin/polymer-legacy-adapter": "^22.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
