@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-enhanced-dialog",
-  "version": "22.0.3",
+  "version": "22.0.4",
   "description": "Vaadin dialog extension with header, footer and scrolling content area.",
   "main": "theme/lumo/vcf-enhanced-dialog.js",
   "types": "src/types/vcf-enhanced-dialog.d.ts",
