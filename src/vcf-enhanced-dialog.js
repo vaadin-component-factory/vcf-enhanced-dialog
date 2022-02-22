@@ -214,7 +214,7 @@ let dialogMemoizedTemplate;
  * @mixes IronResizableBehavior
  * @private
  */
-class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, OverlayElement) {
+class EnhancedDialogOverlay extends mixinBehaviors(IronResizableBehavior, OverlayElement) {
   static get is() {
     return 'vcf-enhanced-dialog-overlay';
   }
@@ -273,7 +273,7 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
   }
 }
 
-customElements.define(DialogOverlayElement.is, DialogOverlayElement);
+customElements.define(EnhancedDialogOverlay.is, EnhancedDialogOverlay);
 
 /**
  * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs.
@@ -353,7 +353,7 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  * @extends DialogElement
  * @demo demo/index.html
  */
-class VcfEnhancedDialog extends DialogElement {
+class EnhancedDialog extends DialogElement {
   static get template() {
     if (!dialogMemoizedTemplate) {
       const enhancedDialogOverlayTemplate = html`
@@ -384,7 +384,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.7';
+    return '1.0.8';
   }
 
   _startDrag(e) {
@@ -423,9 +423,11 @@ class VcfEnhancedDialog extends DialogElement {
   }
 }
 
-customElements.define(VcfEnhancedDialog.is, VcfEnhancedDialog);
+export { EnhancedDialog, EnhancedDialogOverlay };
+
+customElements.define(EnhancedDialog.is, EnhancedDialog);
 
 /**
  * @namespace Vaadin
  */
-window.Vaadin.VcfEnhancedDialog = VcfEnhancedDialog;
+window.Vaadin.VcfEnhancedDialog = EnhancedDialog;
