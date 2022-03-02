@@ -3,7 +3,7 @@
   "version": "22.0.6",
   "description": "Vaadin dialog extension with header, footer and scrolling content area.",
   "main": "theme/lumo/vcf-enhanced-dialog.js",
-  "types": "src/types/vcf-enhanced-dialog.d.ts",
+  "types": "src/vcf-enhanced-dialog.d.ts",
   "author": "Vaadin Ltd",
   "license": "https://raw.githubusercontent.com/vaadin/vaadin-incubator-element/master/LICENSE",
   "repository": {
