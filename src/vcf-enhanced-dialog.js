@@ -384,7 +384,7 @@ class EnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.8';
+    return '1.0.10';
   }
 
   _startDrag(e) {
