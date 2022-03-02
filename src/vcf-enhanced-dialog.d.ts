@@ -28,6 +28,7 @@ export class EnhancedDialogOverlay extends OverlayElement {
          */
         withBackdrop: boolean;
     };
+    ready(): void;
     _slotEmptyAttribute(slot: any): void;
     /**
      * Updates the coordinates of the overlay.
@@ -124,16 +125,19 @@ export class EnhancedDialogOverlay extends OverlayElement {
  * @extends Dialog
  * @demo demo/index.html
  */
-export class EnhancedDialog {
+export class EnhancedDialog extends Dialog {
     static get template(): any;
     static get is(): string;
     static get version(): string;
     _startDrag(e: any): void;
     _originalBounds: any;
     _originalMouseCoords: {
-        top: any;
-        left: any;
+        top: number;
+        left: number;
     };
 }
 import { OverlayElement } from "@vaadin/vaadin-overlay/src/vaadin-overlay.js";
+import { DialogOverlayBoundsParam } from "@vaadin/dialog/src/vaadin-dialog";
+import { DialogOverlayBounds } from "@vaadin/dialog/src/vaadin-dialog";
+import { Dialog } from "@vaadin/dialog/src/vaadin-dialog";
 //# sourceMappingURL=vcf-enhanced-dialog.d.ts.map
