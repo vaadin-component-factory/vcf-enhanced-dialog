@@ -1,11 +1,11 @@
 // eslint-disable-next-line no-unused-vars
-import { Dialog, DialogOverlayBoundsParam, DialogOverlayBounds } from '@vaadin/vaadin-dialog/src/vaadin-dialog';
+import { Dialog } from '@vaadin/dialog';
 import { OverlayElement } from '@vaadin/vaadin-overlay/src/vaadin-overlay.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles';
-import { getMouseOrFirstTouchEvent } from '@vaadin/dialog/src/vaadin-dialog-utils';
+import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles.js';
+import { getMouseOrFirstTouchEvent } from '@vaadin/dialog/src/vaadin-dialog-utils.js';
 import '@vaadin/polymer-legacy-adapter/template-renderer.js';
 
 registerStyles(
