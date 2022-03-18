@@ -137,7 +137,5 @@ export class EnhancedDialog extends Dialog {
     };
 }
 import { OverlayElement } from "@vaadin/vaadin-overlay/src/vaadin-overlay.js";
-import { DialogOverlayBoundsParam } from "@vaadin/dialog/src/vaadin-dialog";
-import { DialogOverlayBounds } from "@vaadin/dialog/src/vaadin-dialog";
 import { Dialog } from "@vaadin/dialog/src/vaadin-dialog";
 //# sourceMappingURL=vcf-enhanced-dialog.d.ts.map
