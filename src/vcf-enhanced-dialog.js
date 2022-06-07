@@ -1,10 +1,12 @@
-/* eslint-disable max-len */
-import { DialogElement } from '@vaadin/vaadin-dialog/src/vaadin-dialog';
+// eslint-disable-next-line no-unused-vars
+import { Dialog } from '@vaadin/dialog';
 import { OverlayElement } from '@vaadin/vaadin-overlay/src/vaadin-overlay.js';
 import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
-import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles';
+import { registerStyles, css } from '@vaadin/vaadin-themable-mixin/register-styles.js';
+import { getMouseOrFirstTouchEvent } from '@vaadin/dialog/src/vaadin-dialog-utils.js';
+import '@vaadin/polymer-legacy-adapter/template-renderer.js';
 
 registerStyles(
   'vcf-enhanced-dialog-overlay',
@@ -214,7 +216,7 @@ let dialogMemoizedTemplate;
  * @mixes IronResizableBehavior
  * @private
  */
-class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, OverlayElement) {
+class EnhancedDialogOverlay extends mixinBehaviors(IronResizableBehavior, OverlayElement) {
   static get is() {
     return 'vcf-enhanced-dialog-overlay';
   }
@@ -271,9 +273,62 @@ class DialogOverlayElement extends mixinBehaviors(IronResizableBehavior, Overlay
       else slot.parentElement.classList.remove('empty');
     });
   }
+
+  /**
+   * Updates the coordinates of the overlay.
+   * @param {!DialogOverlayBoundsParam} bounds
+   */
+  setBounds(bounds) {
+    const overlay = this.$.overlay;
+    const parsedBounds = Object.assign({}, bounds);
+
+    if (overlay.style.position !== 'absolute') {
+      overlay.style.position = 'absolute';
+      this.setAttribute('has-bounds-set', '');
+      this.__forceSafariReflow();
+    }
+
+    for (const arg in parsedBounds) {
+      if (typeof parsedBounds[arg] === 'number') {
+        parsedBounds[arg] = `${parsedBounds[arg]}px`;
+      }
+    }
+
+    Object.assign(overlay.style, parsedBounds);
+  }
+
+  /**
+   * Retrieves the coordinates of the overlay.
+   * @return {!DialogOverlayBounds}
+   */
+  getBounds() {
+    const overlayBounds = this.$.overlay.getBoundingClientRect();
+    const containerBounds = this.getBoundingClientRect();
+    const top = overlayBounds.top - containerBounds.top;
+    const left = overlayBounds.left - containerBounds.left;
+    const width = overlayBounds.width;
+    const height = overlayBounds.height;
+    return { top, left, width, height };
+  }
+
+  /**
+   * Safari 13 renders overflowing elements incorrectly.
+   * This forces it to recalculate height.
+   * @private
+   */
+  __forceSafariReflow() {
+    const scrollPosition = this.$.resizerContainer.scrollTop;
+    const overlay = this.$.overlay;
+    overlay.style.display = 'block';
+
+    requestAnimationFrame(() => {
+      overlay.style.display = '';
+      this.$.resizerContainer.scrollTop = scrollPosition;
+    });
+  }
 }
 
-customElements.define(DialogOverlayElement.is, DialogOverlayElement);
+customElements.define(EnhancedDialogOverlay.is, EnhancedDialogOverlay);
 
 /**
  * `<vcf-enhanced-dialog>` is a Web Component for creating customized modal dialogs.
@@ -350,10 +405,10 @@ customElements.define(DialogOverlayElement.is, DialogOverlayElement);
  *
  * See [ThemableMixin – how to apply styles for shadow parts](https://github.com/vaadin/vaadin-themable-mixin/wiki)
  *
- * @extends DialogElement
+ * @extends Dialog
  * @demo demo/index.html
  */
-class VcfEnhancedDialog extends DialogElement {
+class EnhancedDialog extends Dialog {
   static get template() {
     if (!dialogMemoizedTemplate) {
       const enhancedDialogOverlayTemplate = html`
@@ -363,7 +418,7 @@ class VcfEnhancedDialog extends DialogElement {
           on-mousedown="_bringOverlayToFront"
           on-touchstart="_bringOverlayToFront"
           theme$="[[theme]]"
-          modeless="[[modeless]]"
+          ?modeless="[[modeless]]"
           with-backdrop="[[!modeless]]"
           resizable$="[[resizable]]"
           draggable$="[[draggable]]"
@@ -384,7 +439,7 @@ class VcfEnhancedDialog extends DialogElement {
   }
 
   static get version() {
-    return '1.0.7';
+    return '23.0.0';
   }
 
   _startDrag(e) {
@@ -402,9 +457,9 @@ class VcfEnhancedDialog extends DialogElement {
       if ((isResizerContainer && !isScrollbar) || isContentPart || isDraggable) {
         // Is needed to prevent text selection in Safari
         !this._touchDevice && !isDraggable && e.preventDefault();
-        this._originalBounds = this._getOverlayBounds();
+        this._originalBounds = this.$.overlay.getBounds();
 
-        const event = this.__getMouseOrFirstTouchEvent(e);
+        const event = getMouseOrFirstTouchEvent(e);
 
         this._originalMouseCoords = {
           top: event.pageY,
@@ -416,16 +471,18 @@ class VcfEnhancedDialog extends DialogElement {
         window.addEventListener('touchmove', this._drag);
 
         if (this.$.overlay.$.overlay.style.position !== 'absolute') {
-          this._setBounds(this._originalBounds);
+          this.$.overlay.setBounds(this._originalBounds);
         }
       }
     }
   }
 }
 
-customElements.define(VcfEnhancedDialog.is, VcfEnhancedDialog);
+export { EnhancedDialogOverlay, EnhancedDialog };
+
+customElements.define(EnhancedDialog.is, EnhancedDialog);
 
 /**
  * @namespace Vaadin
  */
-window.Vaadin.VcfEnhancedDialog = VcfEnhancedDialog;
+window.Vaadin.VcfEnhancedDialog = EnhancedDialog;
