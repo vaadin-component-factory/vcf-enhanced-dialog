@@ -1,6 +1,6 @@
 {
   "name": "@vaadin-component-factory/vcf-enhanced-dialog",
-  "version": "23.0.0",
+  "version": "23.0.1",
   "description": "Vaadin dialog extension with header, footer and scrolling content area.",
   "main": "theme/lumo/vcf-enhanced-dialog.js",
   "types": "src/vcf-enhanced-dialog.d.ts",
@@ -28,7 +28,8 @@
     "build:api": "npm run prestart && polymer build",
     "build:demo": "webpack",
     "publish": "node util/publish.js",
-    "prepublishOnly": "tsc"
+    "prepublishOnly": "tsc",
+    "build": "tsc"
   },
   "husky": {
     "hooks": {

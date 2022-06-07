@@ -32,14 +32,14 @@ export class EnhancedDialogOverlay extends OverlayElement {
     _slotEmptyAttribute(slot: any): void;
     /**
      * Updates the coordinates of the overlay.
-     * @param {!DialogOverlayBoundsParam} bounds
+     * @param {import('@vaadin/dialog').DialogOverlayBoundsParam} bounds
      */
-    setBounds(bounds: DialogOverlayBoundsParam): void;
+    setBounds(bounds: import('@vaadin/dialog').DialogOverlayBoundsParam): void;
     /**
      * Retrieves the coordinates of the overlay.
-     * @return {!DialogOverlayBounds}
+     * @return {import('@vaadin/dialog').DialogOverlayBounds}
      */
-    getBounds(): DialogOverlayBounds;
+    getBounds(): import('@vaadin/dialog').DialogOverlayBounds;
     /**
      * Safari 13 renders overflowing elements incorrectly.
      * This forces it to recalculate height.
