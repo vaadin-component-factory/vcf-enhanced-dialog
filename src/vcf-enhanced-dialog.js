@@ -276,7 +276,7 @@ class EnhancedDialogOverlay extends mixinBehaviors(IronResizableBehavior, Overla
 
   /**
    * Updates the coordinates of the overlay.
-   * @param {!DialogOverlayBoundsParam} bounds
+   * @param {import('@vaadin/dialog').DialogOverlayBoundsParam} bounds
    */
   setBounds(bounds) {
     const overlay = this.$.overlay;
@@ -296,10 +296,9 @@ class EnhancedDialogOverlay extends mixinBehaviors(IronResizableBehavior, Overla
 
     Object.assign(overlay.style, parsedBounds);
   }
-
   /**
    * Retrieves the coordinates of the overlay.
-   * @return {!DialogOverlayBounds}
+   * @return {import('@vaadin/dialog').DialogOverlayBounds}
    */
   getBounds() {
     const overlayBounds = this.$.overlay.getBoundingClientRect();
@@ -439,7 +438,7 @@ class EnhancedDialog extends Dialog {
   }
 
   static get version() {
-    return '23.1.0';
+    return '23.0.2';
   }
 
   _startDrag(e) {
